@@ -2,6 +2,7 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
+  console.log(process.env);
   const getHelados = async () => {
     const { data } = await axios.get(
       process.env.REACT_APP_API_URI + '/helados'
