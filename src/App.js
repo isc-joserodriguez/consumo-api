@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 
 function App() {
+  const getHelados = async () => {
+    const { data } = await axios.get(
+      process.env.REACT_APP_API_URI + '/helados'
+    );
+    console.log(data);
+  };
+  const crearHelado = async () => {
+    const { data } = await axios.post(
+      process.env.REACT_APP_API_URI + '/helados',
+      {
+        sabor: 'Fresa',
+        marca: 'Nestle',
+        precio: 3,
+        contenido: 1,
+      }
+    );
+    console.log(data);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={crearHelado}>Guardar</button>
+      <button onClick={getHelados}>Mostrar</button>
     </div>
   );
 }
